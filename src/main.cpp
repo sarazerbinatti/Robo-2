@@ -42,10 +42,10 @@ const int QRE_4 = A4;
 // LIMIAR QRE
 // =====================================================
 
-const int LIMIAR_1;
-const int LIMIAR_2;
-const int LIMIAR_3;
-const int LIMIAR_4;
+const int LIMIAR_1 = 800;
+const int LIMIAR_2 = 855;
+const int LIMIAR_3 = 850;
+const int LIMIAR_4 = 875;
 
 // =====================================================
 // ULTRASSÔNICOS
@@ -241,10 +241,6 @@ void loop()
         return;
     }
 
-    setPWM(125, 125, 125, 125);
-
-    mov_direita();
-
     // ================================================
     // BOLA PERDIDA
     // ================================================
@@ -269,33 +265,33 @@ void loop()
         return;
     }
 
-    switch(ballDirecao)
-    {
+    // switch(ballDirecao)
+    // {
 
-    case 7:
-        setPWM(120,120,120,120);
-        mov_direita();
-        break;
+    // case 7:
+    //     setPWM(120,120,120,120);
+    //     mov_direita();
+    //     break;
 
-    case 6:
-        setPWM(90,90,90,90);
-        mov_direita();
-        break;
+    // case 6:
+    //     setPWM(90,90,90,90);
+    //     mov_direita();
+    //     break;
 
-    case 5:
-        parar_motores();
-        break;
+    // case 5:
+    //     parar_motores();
+    //     break;
 
-    case 4:
-        setPWM(90,90,90,90);
-        mov_esquerda();
-        break;
+    // case 4:
+    //     setPWM(90,90,90,90);
+    //     mov_esquerda();
+    //     break;
 
-    case 3:
-        setPWM(120,120,120,120);
-        mov_esquerda();
-        break;
-    }
+    // case 3:
+    //     setPWM(120,120,120,120);
+    //     mov_esquerda();
+    //     break;
+    // }
 
 }
 
