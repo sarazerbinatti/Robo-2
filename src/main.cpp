@@ -43,20 +43,20 @@ const int QRE_4 = A4;
 // LEITURA QRE
 // =====================================================
 
-const int VERDE_1 = 815;
-const int VERDE_2 = 890;
-const int VERDE_3 = 820; 
+const int VERDE_1 = 910;
+const int VERDE_2 = 930;
+const int VERDE_3 = 940; 
 const int VERDE_4 = 910;
 
-const int BRANCO_1 =  
-const int BRANCO_2 = 
-const int BRANCO_3 = 
-const int BRANCO_4 = 
+const int BRANCO_1 = 740; 
+const int BRANCO_2 = 735;
+const int BRANCO_3 = 880;
+const int BRANCO_4 = 865;
 
-const int LIMIAR_1 = (VERDE_1 + BRANCO_1)/2;
-const int LIMIAR_2 = (VERDE_2 + BRANCO_2)/2;
-const int LIMIAR_3 = (VERDE_3 + BRANCO_3)/2;
-const int LIMIAR_4 = (VERDE_4 + BRANCO_4)/2;
+const int LIMIAR_1 = ceil((VERDE_1 + BRANCO_1)/2);
+const int LIMIAR_2 = ceil((VERDE_2 + BRANCO_2)/2);
+const int LIMIAR_3 = ceil((VERDE_3 + BRANCO_3)/2);
+const int LIMIAR_4 = ceil((VERDE_4 + BRANCO_4)/2);
 
 // =====================================================
 // ULTRASSÔNICOS
@@ -70,33 +70,6 @@ const int ECHO_2 = 25;
 
 const int TRIG_3 = 26;
 const int ECHO_3 = 27;
-
-
-// =====================================================
-// BÚSSOLA
-// =====================================================
-
-int compassAddress = 0x01;
-int Bussola;
-int BussolaZero;
-bool BussolaInicializada = false;
-
-// =====================================================
-// PID
-// =====================================================
-
-
-float Kp = 1.7;
-float Ki = 0;
-float Kd = 0.5;
-
-float erro = 0;
-float erroAnterior = 0;
-
-float integral = 0;
-float derivada = 0;
-
-float correcao = 0;
 
 // =====================================================
 // SENSOR IR
@@ -119,10 +92,6 @@ void giro_direita();
 void parar_motores();
 
 void setPWM(int pwmA, int pwmB, int pwmC, int pwmD);
-
-int lerBussola();
-int lerBussolaRelativa();
-float calcularErroAngular(float alvo, float atual);
 
 // =====================================================
 // SETUP
@@ -166,12 +135,6 @@ void setup()
     InfraredSeeker::Initialize();
 
     delay(500);
-
-    BussolaZero = lerBussola();
-    BussolaInicializada = true;
-
-    Serial.print("ZERO = ");
-    Serial.println(BussolaZero);
 
     parar_motores();
 
@@ -304,80 +267,6 @@ void loop()
     //     break;
     // }
 
-}
-
-// =====================================================
-// LEITURA DA BÚSSOLA
-// =====================================================
-
-int lerBussola()
-{
-    Wire.beginTransmission(compassAddress);
-    Wire.write(0x44);
-
-    if (Wire.endTransmission() != 0)
-    {
-        Serial.println("ERRO I2C");
-        return 0;
-    }
-
-    Wire.requestFrom(compassAddress, 2);
-
-    unsigned long timeout = millis();
-
-    while (Wire.available() < 2)
-    {
-        if (millis() - timeout > 100)
-        {
-            Serial.println("TIMEOUT BUSSOLA");
-            return 0;
-        }
-    }
-
-    byte lowbyte  = Wire.read();
-    byte highbyte = Wire.read();
-
-    return word(highbyte, lowbyte);
-}
-
-int lerBussolaRelativa()
-{
-    int leitura = lerBussola();
-
-    int angulo = leitura - BussolaZero;
-
-    while (angulo < 0)
-    {
-        angulo += 360;
-    }
-
-    while (angulo >= 360)
-    {
-        angulo -= 360;
-    }
-
-    return angulo;
-}
-
-// =====================================================
-// ERRO ANGULAR
-// =====================================================
-
-float calcularErroAngular(float alvo, float atual)
-{
-    float erro = alvo - atual;
-
-    while (erro > 180)
-    {
-        erro -= 360;
-    }
-
-    while (erro < -180)
-    {
-        erro += 360;
-    }
-
-    return erro;
 }
 
 // =====================================================
