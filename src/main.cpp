@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <HTInfraredSeeker.h>
+#include <math.h>
 
 // =====================================================
 // PINOS PWM
@@ -39,13 +40,23 @@ const int QRE_3 = A3;
 const int QRE_4 = A4;
 
 // =====================================================
-// LIMIAR QRE
+// LEITURA QRE
 // =====================================================
 
-const int LIMIAR_1 = 800;
-const int LIMIAR_2 = 855;
-const int LIMIAR_3 = 850;
-const int LIMIAR_4 = 875;
+const int VERDE_1 = 815;
+const int VERDE_2 = 890;
+const int VERDE_3 = 820; 
+const int VERDE_4 = 910;
+
+const int BRANCO_1 =  
+const int BRANCO_2 = 
+const int BRANCO_3 = 
+const int BRANCO_4 = 
+
+const int LIMIAR_1 = (VERDE_1 + BRANCO_1)/2;
+const int LIMIAR_2 = (VERDE_2 + BRANCO_2)/2;
+const int LIMIAR_3 = (VERDE_3 + BRANCO_3)/2;
+const int LIMIAR_4 = (VERDE_4 + BRANCO_4)/2;
 
 // =====================================================
 // ULTRASSÔNICOS
