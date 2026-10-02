@@ -10,7 +10,6 @@
 
 void InfraredSeeker::Initialize()
 {
-	Wire.begin();
 	Wire.beginTransmission(InfraredSeeker::Address);
 	Wire.write(0x00);
 	Wire.endTransmission();
