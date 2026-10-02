@@ -1,10 +1,10 @@
 # PolyForm Noncommercial License 1.0.0
 
-Required Notice: Robo 2 (Goalkeeper) — RoboCup Junior Soccer Infrared
-Required Notice: Copyright © 2026 Sara F. Zerbinatti, Luís Felipe U. Gasparoti and contributors.
-Required Notice: Original repository: https://github.com/sarazerbinatti/Robo-2
-
 <https://polyformproject.org/licenses/noncommercial/1.0.0>
+
+Required Notice: Robo 2 (Goalkeeper) — RoboCup Junior Soccer Infrared
+Required Notice: Copyright © 2026 Sara F. Zerbinatti (sarazerbinatti), Luís Felipe U. Gasparoti (zehtanga) and contributors.
+Required Notice: Original repository: https://github.com/sarazerbinatti/Robo-2
 
 ## Acceptance
 
